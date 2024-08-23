@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 function QuizComponent() {
   const [questions, setQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState({});
   const [score, setScore] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/questions')
+    axios.get(`${API_URL}/api/questions`)
       .then(response => setQuestions(response.data))
       .catch(error => console.error('Error fetching questions:', error));
   }, []);
@@ -18,7 +20,7 @@ function QuizComponent() {
 
   const handleSubmit = () => {
     const answers = Object.entries(userAnswers).map(([id, answer]) => ({ id: parseInt(id), answer }));
-    axios.post('http://localhost:5000/api/submit', answers)
+    axios.post(`${API_URL}/api/submit`, answers)
       .then(response => setScore(response.data))
       .catch(error => console.error('Error submitting answers:', error));
   };
