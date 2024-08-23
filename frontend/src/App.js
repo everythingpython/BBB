@@ -20,3 +20,21 @@ function App() {
 }
 
 export default App;
+import React from 'react';
+import QuizComponent from './QuizComponent';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Book Club Quiz</h1>
+        <p>Test your knowledge of popular books!</p>
+      </header>
+      <main>
+        <QuizComponent />
+      </main>
+    </div>
+  );
+}
+
+export default App;
